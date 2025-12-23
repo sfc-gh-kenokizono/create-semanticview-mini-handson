@@ -72,12 +72,24 @@
 ```
 .
 ├── README.md                      # このファイル
+├── instructor_guide.md            # 講師ガイド（進行・タイムスケジュール）
 ├── step0_setup.sql                # 環境セットアップ
 ├── step1_manual_creation.md       # 手動作成ガイド
 ├── step2_autopilot_creation.md    # AI支援作成ガイド
 └── reference/
-    └── sample_queries.sql         # AI支援用サンプルSQLクエリ
+    ├── sample_queries.sql         # AI支援用サンプルSQLクエリ
+    ├── reset_environment.sql      # 環境リセット用SQL
+    └── comparison_cheatsheet.md   # 比較チートシート
 ```
+
+## 講師向け情報
+
+ハンズオンを実施する講師は、[instructor_guide.md](instructor_guide.md) を参照してください。
+
+- タイムスケジュール（60分構成）
+- 各フェーズでの説明ポイント
+- よくある質問と回答
+- トラブルシューティング
 
 ## クイックスタート
 
