@@ -17,6 +17,25 @@
 - AI支援で「どこまで自動化されるか」を体験する
 - 両方の方法の使い分けを理解する
 
+## ゴール：作成するセマンティックビュー
+
+このハンズオンでは、以下の構成のセマンティックビューを作成します：
+
+| 要素 | 数 | 内容 |
+|------|-----|------|
+| テーブル | 4 | PRODUCTS, SALES, MARKETING_CAMPAIGN_METRICS, SOCIAL_MEDIA |
+| リレーションシップ | 2 | 商品結合、カテゴリ結合 |
+| ファクト | 5 | 売上金額、販売数量、インプレッション、クリック、メンション |
+| ディメンション | 13 | 地域、カテゴリ、日付、プラットフォームなど |
+| メトリクス | 7 | 総売上、平均売上、CTR（クリック率）など |
+
+完成すると、以下のような質問に回答できます：
+- 「製品カテゴリ別の売上を教えて」
+- 「6月の地域別売上ランキング」
+- 「キャンペーン別のクリック率は？」
+
+👉 詳細は [reference/goal_semantic_view.md](reference/goal_semantic_view.md) を参照
+
 ## 前提条件
 
 - Snowflakeトライアルアカウント（または本番アカウント）
@@ -77,6 +96,7 @@
 ├── step1_manual_creation.md       # 手動作成ガイド
 ├── step2_autopilot_creation.md    # AI支援作成ガイド
 └── reference/
+    ├── goal_semantic_view.md      # ゴール：完成形セマンティックビュー
     ├── sample_queries.sql         # AI支援用サンプルSQLクエリ
     ├── reset_environment.sql      # 環境リセット用SQL
     └── comparison_cheatsheet.md   # 比較チートシート
