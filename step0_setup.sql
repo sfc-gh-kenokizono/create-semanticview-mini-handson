@@ -69,8 +69,9 @@ COPY FILES INTO @sv_handson_db.retail.sv_stage
 
 -- [1/4] PRODUCTS: 製品マスタ
 -- 商品ID、商品名、カテゴリの製品情報
+-- ※ PRIMARY KEY はセマンティックビューのリレーションシップで参照される側に必要
 CREATE OR REPLACE TABLE products (
-  product_id NUMBER(38,0),
+  product_id NUMBER(38,0) PRIMARY KEY,
   product_name VARCHAR(16777216),
   category VARCHAR(16777216)
 );
@@ -89,9 +90,11 @@ COPY INTO sales FROM @sv_handson_db.retail.sv_stage/sales.csv;
 
 -- [3/4] MARKETING_CAMPAIGN_METRICS: マーケティングキャンペーン指標
 -- インプレッション数、クリック数などのキャンペーン効果を記録
+-- ※ CATEGORYを論理的な主キーとして設定（SOCIAL_MEDIAとの結合用）
+-- ※ Snowflakeの主キー制約はインフォメーショナル（一意性は強制されない）
 CREATE OR REPLACE TABLE marketing_campaign_metrics (
   date DATE,
-  category VARCHAR(16777216),
+  category VARCHAR(16777216) PRIMARY KEY,
   campaign_name VARCHAR(16777216),
   impressions NUMBER(38,0),
   clicks NUMBER(38,0)

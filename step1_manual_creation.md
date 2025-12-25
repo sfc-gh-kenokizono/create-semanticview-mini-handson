@@ -81,12 +81,15 @@ Retail_Analytics_Manual_SV
 
 1. **「テーブルを追加」** をクリック
 2. `SV_HANDSON_DB.RETAIL.PRODUCTS` を選択
-3. 追加されたテーブルカードで **主キー** を設定
-   - `PRODUCT_ID` を選択
+3. 追加されたテーブルカードで **主キー** を確認
+   - `PRODUCT_ID` が自動選択されているはず（テーブル定義で設定済み）
 4. 同様に以下のテーブルも追加
-   - `SALES`（主キー: 設定しない）
-   - `MARKETING_CAMPAIGN_METRICS`（主キー: `CATEGORY`）
-   - `SOCIAL_MEDIA`（主キー: 設定しない）
+   - `SALES`（主キー: なし）
+   - `MARKETING_CAMPAIGN_METRICS`（主キー: `CATEGORY` が自動選択）
+   - `SOCIAL_MEDIA`（主キー: なし）
+
+> 💡 **ポイント**: PRODUCTS と MARKETING_CAMPAIGN_METRICS はテーブル定義時に主キーが設定されているため、自動で選択されます。
+> これらはリレーションシップで参照される側なので、主キーが必要です。
 
 > ⏱️ **ここまでの所要時間**: 約5分
 

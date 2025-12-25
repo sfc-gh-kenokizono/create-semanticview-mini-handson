@@ -74,12 +74,14 @@
 
 3. **今日のデータモデル**
 
-   | テーブル | 内容 | 主キー |
-   |---------|------|--------|
-   | PRODUCTS | 商品マスタ | PRODUCT_ID |
-   | SALES | 売上データ | なし |
-   | MARKETING_CAMPAIGN_METRICS | マーケティング指標 | CATEGORY |
-   | SOCIAL_MEDIA | SNSデータ | なし |
+   | テーブル | 内容 | 主キー | 備考 |
+   |---------|------|--------|------|
+   | PRODUCTS | 商品マスタ | PRODUCT_ID | テーブル定義で設定済み |
+   | SALES | 売上データ | なし | PRODUCTSを参照 |
+   | MARKETING_CAMPAIGN_METRICS | マーケティング指標 | CATEGORY | テーブル定義で設定済み |
+   | SOCIAL_MEDIA | SNSデータ | なし | MARKETINGを参照 |
+   
+   > 💡 主キーはテーブル定義で設定済みなので、セマンティックビュー作成時に自動検出されます。
 
 ### 1-3. 環境セットアップ（8分）
 
