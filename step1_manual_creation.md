@@ -94,6 +94,13 @@ Retail_Analytics_Manual_SV
 
 ## 1.4 リレーションシップの設定
 
+> ⚠️ **重要**: リレーションシップを張るには、**参照される側のテーブルに主キーが設定されている必要があります**。
+> 
+> 例: `SALES (PRODUCT_ID) REFERENCES PRODUCTS` の場合、PRODUCTS に主キーが必要です。
+> 
+> 前のステップで PRODUCTS と MARKETING_CAMPAIGN_METRICS に主キーを設定したのはこのためです。
+> 主キーが設定されていないとエラーになります。
+
 ### 🤔 考えてみよう
 4つのテーブル間で、どのような結合関係がありますか？
 

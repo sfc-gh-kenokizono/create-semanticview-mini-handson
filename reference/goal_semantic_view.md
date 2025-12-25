@@ -61,6 +61,10 @@ MARKETING_CAMPAIGN_METRICS ←───────── SOCIAL_MEDIA
 | sales_to_products | SALES | PRODUCTS | PRODUCT_ID | Many-to-One |
 | social_to_marketing | SOCIAL_MEDIA | MARKETING_CAMPAIGN_METRICS | CATEGORY | Many-to-One |
 
+> ⚠️ **注意**: 右テーブル（参照される側）には**主キーの設定が必須**です。
+> - PRODUCTS → 主キー: PRODUCT_ID
+> - MARKETING_CAMPAIGN_METRICS → 主キー: CATEGORY
+
 ---
 
 ## 3. ファクト（集計対象の数値）
