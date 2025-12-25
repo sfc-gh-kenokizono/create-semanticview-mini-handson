@@ -7,6 +7,10 @@
 
 USE ROLE ACCOUNTADMIN;
 
+-- ============================================
+-- ACCOUNTADMINで実行が必要な部分
+-- ============================================
+
 -- ロールの作成と権限付与
 CREATE OR REPLACE ROLE semantic_view_handson_role;
 GRANT CREATE WAREHOUSE ON ACCOUNT TO ROLE semantic_view_handson_role;
@@ -16,7 +20,20 @@ GRANT CREATE DATABASE ON ACCOUNT TO ROLE semantic_view_handson_role;
 SET current_user = (SELECT CURRENT_USER());   
 GRANT ROLE semantic_view_handson_role TO USER IDENTIFIER($current_user);
 
--- ロールを切り替え
+-- Git連携のAPI統合を作成（ACCOUNTADMINが必要）
+CREATE OR REPLACE API INTEGRATION git_api_integration_sv
+  API_PROVIDER = git_https_api
+  API_ALLOWED_PREFIXES = ('https://github.com/sfc-gh-kenokizono/')
+  ENABLED = TRUE;
+
+-- Cortexクロスリージョン設定（AI支援機能を使うために必要）
+-- トライアルアカウントのリージョンによってはこの設定が必要です
+ALTER ACCOUNT SET CORTEX_ENABLED_CROSS_REGION = 'AWS_US';
+
+-- ============================================
+-- ここからはハンズオン用ロールで実行
+-- ============================================
+
 USE ROLE semantic_view_handson_role;
 
 -- データベース・スキーマ・ウェアハウスの作成
@@ -28,21 +45,11 @@ USE DATABASE sv_handson_db;
 USE SCHEMA retail;
 USE WAREHOUSE sv_handson_wh;
 
--- ============================================
--- ファイルフォーマットとデータロード
--- ============================================
-
 -- CSVファイルフォーマットの作成
 CREATE OR REPLACE FILE FORMAT sv_csvformat
   SKIP_HEADER = 1  
   FIELD_OPTIONALLY_ENCLOSED_BY = '"'  
   TYPE = 'CSV';  
-
--- Git連携のAPI統合を作成
-CREATE OR REPLACE API INTEGRATION git_api_integration_sv
-  API_PROVIDER = git_https_api
-  API_ALLOWED_PREFIXES = ('https://github.com/sfc-gh-kenokizono/')
-  ENABLED = TRUE;
 
 -- GIT統合の作成（既存の資材を参照）
 CREATE OR REPLACE GIT REPOSITORY git_sv_handson
@@ -130,9 +137,6 @@ SELECT * FROM products LIMIT 5;
 SELECT * FROM sales LIMIT 5;
 SELECT * FROM marketing_campaign_metrics LIMIT 5;
 SELECT * FROM social_media LIMIT 5;
-
--- クロスリージョン設定（必要に応じて）
--- ALTER ACCOUNT SET CORTEX_ENABLED_CROSS_REGION = 'AWS_US';
 
 -- ============================================
 -- セットアップ完了
