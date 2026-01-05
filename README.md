@@ -256,22 +256,6 @@ Retail_Analytics_Manual_SV
 
 「ファクト」は集計対象となる数値カラムです。
 
-<details>
-<summary>✅ 設定するファクト（クリックして表示）</summary>
-
-| カラム | ファクト？ | 理由 |
-|--------|-----------|------|
-| SALES.SALES_AMOUNT | ✅ YES | 売上金額は集計対象 |
-| SALES.UNITS_SOLD | ✅ YES | 販売数量は集計対象 |
-| SALES.PRODUCT_ID | ❌ NO | IDは識別子であり集計対象ではない |
-| IMPRESSIONS | ✅ YES | インプレッション数は集計対象 |
-| CLICKS | ✅ YES | クリック数は集計対象 |
-| MENTIONS | ✅ YES | メンション数は集計対象 |
-
-</details>
-
-**設定手順**
-
 1. **「ファクト」** タブを開く
 2. 各テーブルのカラムから、ファクトを追加：
 
@@ -310,21 +294,6 @@ Retail_Analytics_Manual_SV
 ### 1.7 メトリクス（Metrics）の設定
 
 「メトリクス」は計算式を定義したものです。
-
-<details>
-<summary>✅ 計算式の例（クリックして表示）</summary>
-
-| ビジネス指標 | 計算式 |
-|-------------|--------|
-| 総売上金額 | `SUM(SALES_AMOUNT)` |
-| 総販売数量 | `SUM(UNITS_SOLD)` |
-| 平均売上金額 | `AVG(SALES_AMOUNT)` |
-| クリック率（CTR） | `DIV0(SUM(CLICKS), SUM(IMPRESSIONS))` |
-| 総メンション数 | `SUM(MENTIONS)` |
-
-</details>
-
-**設定手順**
 
 1. **「メトリクス」** タブを開く
 2. 以下のメトリクスを追加：
