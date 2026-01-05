@@ -51,10 +51,10 @@ CREATE OR REPLACE FILE FORMAT sv_csvformat
   FIELD_OPTIONALLY_ENCLOSED_BY = '"'  
   TYPE = 'CSV';  
 
--- GIT統合の作成（既存の資材を参照）
+-- GIT統合の作成（このリポジトリを参照）
 CREATE OR REPLACE GIT REPOSITORY git_sv_handson
   API_INTEGRATION = git_api_integration_sv
-  ORIGIN = 'https://github.com/sfc-gh-kenokizono/quickstart-with-snowflake-intelligence-ja.git';
+  ORIGIN = 'https://github.com/sfc-gh-kenokizono/create-semanticview-mini-handson.git';
 
 -- リポジトリの確認
 LS @git_sv_handson/branches/main;

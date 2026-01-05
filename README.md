@@ -638,5 +638,10 @@ SELECT 'クリーンアップ完了！' AS status;
 .
 ├── README.md             # このファイル（ユーザーガイド）
 ├── step0_setup.sql       # 環境セットアップSQL
-└── sample_queries.sql    # AI支援用サンプルSQLクエリ（コピー用）
+├── sample_queries.sql    # AI支援用サンプルSQLクエリ（コピー用）
+└── data/                 # サンプルデータ（CSVファイル）
+    ├── products.csv
+    ├── sales.csv
+    ├── marketing_campaign_metrics.csv
+    └── social_media_mentions.csv
 ```
