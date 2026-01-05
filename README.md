@@ -633,9 +633,7 @@ SELECT 'クリーンアップ完了！' AS status;
 
 ```
 .
-├── README.md                 # このファイル（ユーザーガイド）
-├── instructor_guide.md       # 講師ガイド
-├── step0_setup.sql           # 環境セットアップSQL
-└── reference/
-    └── sample_queries.sql    # AI支援用サンプルSQLクエリ（コピー用）
+├── README.md             # このファイル（ユーザーガイド）
+├── step0_setup.sql       # 環境セットアップSQL
+└── sample_queries.sql    # AI支援用サンプルSQLクエリ（コピー用）
 ```
