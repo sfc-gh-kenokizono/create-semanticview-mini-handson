@@ -189,15 +189,11 @@ Retail_Analytics_Manual_SV
 **設定手順**
 
 1. **「テーブルを追加」** をクリック
-2. `SV_HANDSON_DB.RETAIL.PRODUCTS` を選択
-3. 追加されたテーブルカードで **主キー** を確認
-   - `PRODUCT_ID` が自動選択されているはず（テーブル定義で設定済み）
-4. 同様に以下のテーブルも追加
-   - `SALES`（主キー: なし）
-   - `MARKETING_CAMPAIGN_METRICS`（主キー: `CATEGORY` が自動選択）
-   - `SOCIAL_MEDIA`（主キー: なし）
-
-> 💡 **ポイント**: PRODUCTS と MARKETING_CAMPAIGN_METRICS はテーブル定義時に主キーが設定されているため、自動で選択されます。
+2. 以下の4つのテーブルを追加：
+   - `SV_HANDSON_DB.RETAIL.MARKETING_CAMPAIGN_METRICS`
+   - `SV_HANDSON_DB.RETAIL.PRODUCTS`
+   - `SV_HANDSON_DB.RETAIL.SALES`
+   - `SV_HANDSON_DB.RETAIL.SOCIAL_MEDIA`
 
 ### 1.4 リレーションシップの設定
 
@@ -279,33 +275,37 @@ Retail_Analytics_Manual_SV
 1. **「ファクト」** タブを開く
 2. 各テーブルのカラムから、ファクトを追加：
 
-| ファクト名 | カラム | コメント |
-|-----------|--------|---------|
-| `SALES_AMOUNT` | SALES.SALES_AMOUNT | 売上金額 |
-| `UNITS_SOLD` | SALES.UNITS_SOLD | 販売数量 |
-| `IMPRESSIONS` | MARKETING_CAMPAIGN_METRICS.IMPRESSIONS | インプレッション数 |
-| `CLICKS` | MARKETING_CAMPAIGN_METRICS.CLICKS | クリック数 |
-| `MENTIONS` | SOCIAL_MEDIA.MENTIONS | メンション数 |
+| テーブル | ファクト名 | コメント |
+|---------|-----------|---------|
+| MARKETING_CAMPAIGN_METRICS | `CLICKS` | クリック数 |
+| MARKETING_CAMPAIGN_METRICS | `IMPRESSIONS` | インプレッション数 |
+| SALES | `SALES_AMOUNT` | 売上金額 |
+| SALES | `UNITS_SOLD` | 販売数量 |
+| SOCIAL_MEDIA | `MENTIONS` | メンション数 |
 
 ### 1.6 ディメンション（Dimensions）の設定
 
 「ディメンション」は分析の切り口（「〜別」「〜ごと」）となるカラムです。
 
-**設定するディメンション**
+**設定手順**
 
-| ディメンション名 | カラム | コメント |
-|-----------------|--------|---------|
-| `PRODUCT_ID` | PRODUCTS.PRODUCT_ID | 商品ID |
-| `PRODUCT_NAME` | PRODUCTS.PRODUCT_NAME | 商品名 |
-| `PRODUCT_CATEGORY` | PRODUCTS.CATEGORY | 商品カテゴリ |
-| `SALES_DATE` | SALES.DATE | 売上日 |
-| `REGION` | SALES.REGION | 地域 |
-| `MARKETING_DATE` | MARKETING_CAMPAIGN_METRICS.DATE | キャンペーン日 |
-| `CAMPAIGN_NAME` | MARKETING_CAMPAIGN_METRICS.CAMPAIGN_NAME | キャンペーン名 |
-| `MARKETING_CATEGORY` | MARKETING_CAMPAIGN_METRICS.CATEGORY | マーケティングカテゴリ |
-| `SOCIAL_DATE` | SOCIAL_MEDIA.DATE | SNS日付 |
-| `PLATFORM` | SOCIAL_MEDIA.PLATFORM | SNSプラットフォーム |
-| `INFLUENCER` | SOCIAL_MEDIA.INFLUENCER | インフルエンサー |
+1. **「ディメンション」** タブを開く
+2. 各テーブルのカラムから、ディメンションを追加：
+
+| テーブル | ディメンション名 | コメント |
+|---------|-----------------|---------|
+| MARKETING_CAMPAIGN_METRICS | `CAMPAIGN_NAME` | キャンペーン名 |
+| MARKETING_CAMPAIGN_METRICS | `CATEGORY` | マーケティングカテゴリ |
+| MARKETING_CAMPAIGN_METRICS | `DATE` | キャンペーン日 |
+| PRODUCTS | `CATEGORY` | 商品カテゴリ |
+| PRODUCTS | `PRODUCT_ID` | 商品ID |
+| PRODUCTS | `PRODUCT_NAME` | 商品名 |
+| SALES | `DATE` | 売上日 |
+| SALES | `REGION` | 地域 |
+| SOCIAL_MEDIA | `CATEGORY` | SNSカテゴリ |
+| SOCIAL_MEDIA | `DATE` | SNS日付 |
+| SOCIAL_MEDIA | `INFLUENCER` | インフルエンサー |
+| SOCIAL_MEDIA | `PLATFORM` | SNSプラットフォーム |
 
 ### 1.7 メトリクス（Metrics）の設定
 
@@ -329,13 +329,13 @@ Retail_Analytics_Manual_SV
 1. **「メトリクス」** タブを開く
 2. 以下のメトリクスを追加：
 
-| メトリクス名 | 計算式 | コメント |
-|-------------|--------|---------|
-| `TOTAL_SALES_AMOUNT` | `SUM(SALES_AMOUNT)` | 総売上金額 |
-| `TOTAL_UNITS_SOLD` | `SUM(UNITS_SOLD)` | 総販売数量 |
-| `AVG_SALES_AMOUNT` | `AVG(SALES_AMOUNT)` | 平均売上金額 |
-| `CLICK_THROUGH_RATE` | `DIV0(SUM(CLICKS), SUM(IMPRESSIONS))` | クリック率 |
-| `TOTAL_MENTIONS` | `SUM(MENTIONS)` | 総メンション数 |
+| テーブル | メトリクス名 | 計算式 | コメント |
+|---------|-------------|--------|---------|
+| MARKETING_CAMPAIGN_METRICS | `CLICK_THROUGH_RATE` | `DIV0(SUM(CLICKS), SUM(IMPRESSIONS))` | クリック率 |
+| SALES | `AVG_SALES_AMOUNT` | `AVG(SALES_AMOUNT)` | 平均売上金額 |
+| SALES | `TOTAL_SALES_AMOUNT` | `SUM(SALES_AMOUNT)` | 総売上金額 |
+| SALES | `TOTAL_UNITS_SOLD` | `SUM(UNITS_SOLD)` | 総販売数量 |
+| SOCIAL_MEDIA | `TOTAL_MENTIONS` | `SUM(MENTIONS)` | 総メンション数 |
 
 ### 1.8 セマンティックビューの作成
 
