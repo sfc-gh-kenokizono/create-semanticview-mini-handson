@@ -256,8 +256,11 @@ Retail_Analytics_Manual_SV
 
 「ファクト」は集計対象となる数値カラムです。
 
+> 💡 **注意**: Snowflakeはテーブル追加時にカラムを自動分類しますが、数値カラムが「ディメンション」に分類されていることがあります。
+> 例えば `CLICKS` や `IMPRESSIONS` がディメンションにある場合は、**「ファクトへ移動」** してください。
+
 1. **「ファクト」** タブを開く
-2. 各テーブルのカラムから、ファクトを追加：
+2. 以下のカラムがファクトにあることを確認（なければディメンションから移動）：
 
 | テーブル | ファクト名 | コメント |
 |---------|-----------|---------|
@@ -271,25 +274,28 @@ Retail_Analytics_Manual_SV
 
 「ディメンション」は分析の切り口（「〜別」「〜ごと」）となるカラムです。
 
-**設定手順**
+> 💡 **注意**: ファクトに分類されているカラムがあれば、**「ディメンションへ移動」** してください。
 
 1. **「ディメンション」** タブを開く
-2. 各テーブルのカラムから、ディメンションを追加：
+2. 以下のカラムがディメンションにあることを確認（なければファクトから移動）：
 
-| テーブル | ディメンション名 | コメント |
-|---------|-----------------|---------|
-| MARKETING_CAMPAIGN_METRICS | `CAMPAIGN_NAME` | キャンペーン名 |
-| MARKETING_CAMPAIGN_METRICS | `CATEGORY` | マーケティングカテゴリ |
-| MARKETING_CAMPAIGN_METRICS | `DATE` | キャンペーン日 |
-| PRODUCTS | `CATEGORY` | 商品カテゴリ |
-| PRODUCTS | `PRODUCT_ID` | 商品ID |
-| PRODUCTS | `PRODUCT_NAME` | 商品名 |
-| SALES | `DATE` | 売上日 |
-| SALES | `REGION` | 地域 |
-| SOCIAL_MEDIA | `CATEGORY` | SNSカテゴリ |
-| SOCIAL_MEDIA | `DATE` | SNS日付 |
-| SOCIAL_MEDIA | `INFLUENCER` | インフルエンサー |
-| SOCIAL_MEDIA | `PLATFORM` | SNSプラットフォーム |
+| テーブル | ディメンション名 | 種類 | コメント |
+|---------|-----------------|------|---------|
+| MARKETING_CAMPAIGN_METRICS | `CAMPAIGN_NAME` | | キャンペーン名 |
+| MARKETING_CAMPAIGN_METRICS | `CATEGORY` | | マーケティングカテゴリ |
+| MARKETING_CAMPAIGN_METRICS | `DATE` | 時間 | キャンペーン日 |
+| PRODUCTS | `CATEGORY` | | 商品カテゴリ |
+| PRODUCTS | `PRODUCT_ID` | | 商品ID |
+| PRODUCTS | `PRODUCT_NAME` | | 商品名 |
+| SALES | `DATE` | 時間 | 売上日 |
+| SALES | `REGION` | | 地域 |
+| SOCIAL_MEDIA | `CATEGORY` | | SNSカテゴリ |
+| SOCIAL_MEDIA | `DATE` | 時間 | SNS日付 |
+| SOCIAL_MEDIA | `INFLUENCER` | | インフルエンサー |
+| SOCIAL_MEDIA | `PLATFORM` | | SNSプラットフォーム |
+
+> 💡 **時間ディメンション**: `DATE` カラムは「時間」タイプのディメンションです。
+> 時間ディメンションを設定すると、「月別」「四半期別」などの時間軸での分析が可能になります。
 
 ### 1.7 メトリクス（Metrics）の設定
 
