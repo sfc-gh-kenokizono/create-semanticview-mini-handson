@@ -362,9 +362,8 @@ Step 1と同じ4つのテーブルから、サンプルSQLクエリを入力す�
 2. 左メニューから **「AI と ML」** → **「Cortex 分析」** を選択
 3. 右上の **「+ 新規作成」** をクリック
 4. **「新しいセマンティックビューを作成」** を選択
-5. **「AI支援で生成」** オプションを選択 ← ✨ここがポイント！
 
-### 2.2 基本情報の入力
+### 2.2 基本情報の入力（はじめるにあたり）
 
 **セマンティックビュー名**
 ```
@@ -383,35 +382,11 @@ Retail_Analytics_Autopilot_SV
 
 > 💡 **ポイント**: 説明文はAIがセマンティックビューの目的を理解するために使用します。
 
-### 2.3 テーブルの選択
+### 2.3 コンテキストの提供（SQLクエリ入力）← ✨ここがポイント！
 
-以下の4つのテーブルを選択します：
+**「コンテキストを入力してください...オプション」** 画面で、**「SQLクエリ」** を選択します。
 
-- `SV_HANDSON_DB.RETAIL.PRODUCTS`
-- `SV_HANDSON_DB.RETAIL.SALES`
-- `SV_HANDSON_DB.RETAIL.MARKETING_CAMPAIGN_METRICS`
-- `SV_HANDSON_DB.RETAIL.SOCIAL_MEDIA`
-
-### 2.4 AI生成オプションの有効化 ← ✨メタデータも自動生成！
-
-テーブル選択後、以下のオプションを有効にします：
-
-☑️ **Add AI-generated descriptions for tables and columns**
-
-このオプションを有効にすると：
-- テーブルの説明文が自動生成される
-- カラムの説明文が自動生成される
-- カラム名とサンプル値からAIが内容を推測
-
-> 💡 **ポイント**: 事前にカタログでメタデータを準備する必要はありません！
-
-☑️ **Include sample values**（推奨）
-
-サンプル値を含めることで、AIがカラムの内容をより正確に理解します。
-
-### 2.5 サンプルSQLクエリの入力
-
-以下のSQLクエリをコピーして、**「SQLクエリ」** フィールドに貼り付けてください。
+以下のSQLクエリをコピーして貼り付けてください（Shift + Enter で複数追加）：
 
 **クエリ1: 製品カテゴリ別売上分析**
 
@@ -466,6 +441,34 @@ JOIN marketing_campaign_metrics m ON sm.category = m.category
 GROUP BY sm.category, sm.platform
 ORDER BY total_mentions DESC;
 ```
+
+> 💡 **ポイント**: これらのSQLクエリから、AIがJOIN条件を読み取ってリレーションシップを自動検出します。
+
+### 2.4 テーブルの選択
+
+以下の4つのテーブルを選択します：
+
+- `SV_HANDSON_DB.RETAIL.MARKETING_CAMPAIGN_METRICS`
+- `SV_HANDSON_DB.RETAIL.PRODUCTS`
+- `SV_HANDSON_DB.RETAIL.SALES`
+- `SV_HANDSON_DB.RETAIL.SOCIAL_MEDIA`
+
+### 2.5 列の選択（AI生成オプション）← ✨メタデータも自動生成！
+
+列の選択画面で、以下のオプションを有効にします：
+
+☑️ **Add AI-generated descriptions for tables and columns**
+
+このオプションを有効にすると：
+- テーブルの説明文が自動生成される
+- カラムの説明文が自動生成される
+- カラム名とサンプル値からAIが内容を推測
+
+> 💡 **ポイント**: 事前にカタログでメタデータを準備する必要はありません！
+
+☑️ **Include sample values**（推奨）
+
+サンプル値を含めることで、AIがカラムの内容をより正確に理解します。
 
 ### 2.6 AIによる自動生成を実行
 
