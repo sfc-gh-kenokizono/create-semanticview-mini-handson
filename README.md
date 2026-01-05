@@ -402,8 +402,8 @@ SELECT
     p.category,
     SUM(s.sales_amount) AS total_sales,
     SUM(s.units_sold) AS total_units
-FROM sales s
-JOIN products p ON s.product_id = p.product_id
+FROM sv_handson_db.retail.sales s
+JOIN sv_handson_db.retail.products p ON s.product_id = p.product_id
 GROUP BY p.category
 ORDER BY total_sales DESC;
 ```
@@ -422,7 +422,7 @@ SELECT
     DATE_TRUNC('month', s.date) AS month,
     SUM(s.sales_amount) AS monthly_sales,
     AVG(s.sales_amount) AS avg_sales
-FROM sales s
+FROM sv_handson_db.retail.sales s
 GROUP BY s.region, DATE_TRUNC('month', s.date)
 ORDER BY month, region;
 ```
@@ -442,7 +442,7 @@ SELECT
     SUM(m.impressions) AS total_impressions,
     SUM(m.clicks) AS total_clicks,
     DIV0(SUM(m.clicks), SUM(m.impressions)) AS ctr
-FROM marketing_campaign_metrics m
+FROM sv_handson_db.retail.marketing_campaign_metrics m
 GROUP BY m.campaign_name, m.category
 ORDER BY ctr DESC;
 ```
@@ -461,8 +461,8 @@ SELECT
     sm.platform,
     SUM(sm.mentions) AS total_mentions,
     SUM(m.clicks) AS total_clicks
-FROM social_media sm
-JOIN marketing_campaign_metrics m ON sm.category = m.category
+FROM sv_handson_db.retail.social_media sm
+JOIN sv_handson_db.retail.marketing_campaign_metrics m ON sm.category = m.category
 GROUP BY sm.category, sm.platform
 ORDER BY total_mentions DESC;
 ```
