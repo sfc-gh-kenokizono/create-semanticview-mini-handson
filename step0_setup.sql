@@ -15,6 +15,10 @@ USE ROLE ACCOUNTADMIN;
 CREATE OR REPLACE ROLE semantic_view_handson_role;
 GRANT CREATE WAREHOUSE ON ACCOUNT TO ROLE semantic_view_handson_role;
 GRANT CREATE DATABASE ON ACCOUNT TO ROLE semantic_view_handson_role;
+GRANT CREATE INTEGRATION ON ACCOUNT TO ROLE semantic_view_handson_role;
+
+-- セマンティックビュー作成に必要な権限
+GRANT CREATE SNOWFLAKE.INTELLIGENCE.SEMANTIC_VIEW ON ACCOUNT TO ROLE semantic_view_handson_role;
 
 -- 現在のユーザーにロールを付与
 SET current_user = (SELECT CURRENT_USER());   
