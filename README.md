@@ -369,15 +369,8 @@ Retail_Analytics_Manual_SV
 - メトリクスの計算式は正しく書けましたか？
 - 全体で何分かかりましたか？
 
-### Step 2に進む前に：環境リセット
-
-以下のSQLを実行してセマンティックビューを削除してください：
-
-```sql
-USE ROLE semantic_view_handson_role;
-DROP SEMANTIC VIEW IF EXISTS sv_handson_db.retail.retail_analytics_manual_sv;
-SELECT 'セマンティックビュー削除完了。Step 2に進んでください。' AS status;
-```
+> 💡 **次のステップ**: 手動で作成したセマンティックビューはそのまま残して、Step 2に進みます。
+> 最後に両方をPlaygroundで比較します。
 
 ---
 
@@ -544,11 +537,15 @@ AIが生成した内容を確認し、必要であれば調整します。
 1. 調整が完了したら、**「作成」** ボタンをクリック
 2. 作成完了を確認
 
-### 2.10 動作確認（Playground）
+### 2.10 動作確認 & 比較（Playground）
 
-1. 作成したセマンティックビュー `Retail_Analytics_Autopilot_SV` を選択
-2. **「Playground」** タブを開く
-3. Step 1と同じ質問を試してみてください：
+両方のセマンティックビューをPlaygroundで比較します：
+
+1. **Cortex 分析** 画面で、以下の2つが表示されていることを確認：
+   - `Retail_Analytics_Manual_SV`（Step 1で作成）
+   - `Retail_Analytics_Autopilot_SV`（Step 2で作成）
+
+2. それぞれのセマンティックビューで**同じ質問**を試して、回答を比較してください：
 
 ```
 製品カテゴリ別の売上を教えて
@@ -561,6 +558,12 @@ AIが生成した内容を確認し、必要であれば調整します。
 ```
 キャンペーン別のクリック率は？
 ```
+
+### 比較ポイント
+
+- 回答の精度に違いはありますか？
+- 生成されるSQLに違いはありますか？
+- どちらが使いやすいと感じましたか？
 
 ---
 
