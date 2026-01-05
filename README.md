@@ -299,7 +299,10 @@ Retail_Analytics_Manual_SV
 
 ### 1.7 メトリクス（Metrics）の設定
 
-「メトリクス」は計算式を定義したものです。
+「メトリクス」は複数のファクトを組み合わせた計算式を定義します。
+
+> 💡 **ポイント**: 単純な`SUM`や`AVG`はファクトがあれば自動集計されるため、メトリクス化は不要です。
+> メトリクスは「クリック率 = クリック数 ÷ インプレッション数」のような**複合計算**に使います。
 
 1. **「メトリクス」** タブを開く
 2. 以下のメトリクスを追加：
@@ -307,10 +310,6 @@ Retail_Analytics_Manual_SV
 | テーブル | メトリクス名 | 計算式 | コメント |
 |---------|-------------|--------|---------|
 | MARKETING_CAMPAIGN_METRICS | `CLICK_THROUGH_RATE` | `DIV0(SUM(CLICKS), SUM(IMPRESSIONS))` | クリック率 |
-| SALES | `AVG_SALES_AMOUNT` | `AVG(SALES_AMOUNT)` | 平均売上金額 |
-| SALES | `TOTAL_SALES_AMOUNT` | `SUM(SALES_AMOUNT)` | 総売上金額 |
-| SALES | `TOTAL_UNITS_SOLD` | `SUM(UNITS_SOLD)` | 総販売数量 |
-| SOCIAL_MEDIA | `TOTAL_MENTIONS` | `SUM(MENTIONS)` | 総メンション数 |
 
 ### 1.8 セマンティックビューの作成
 
